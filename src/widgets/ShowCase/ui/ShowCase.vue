@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { validateHandler } from '@/app/providers/router/queryValidator';
 import { CharacterList, CharacterFilter, CharacterMore } from '@/entities/Character/';
-import ScrollPanel from 'primevue/scrollPanel';
+import ScrollPanel from 'primevue/scrollpanel';
 import ScrollTop from 'primevue/scrolltop';
 
 import { useShowCase } from '../model';

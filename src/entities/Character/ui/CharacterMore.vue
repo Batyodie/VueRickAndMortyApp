@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Button from 'primevue/button';
-import ProgressSpinner from 'primevue/ProgressSpinner';
+import ProgressSpinner from 'primevue/progressspinner';
 
 export interface CharacterPaginatorProps {
   page: number;
