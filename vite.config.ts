@@ -14,6 +14,7 @@ const port = process.env.port ? Number(process.env.port) : 3000;
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/VueRickAndMortyApp',
   plugins: [
     vue(),
     eslint({

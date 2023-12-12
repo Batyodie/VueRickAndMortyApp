@@ -8,7 +8,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:vue/vue3-essential",
     "./.eslintrc-auto-import.json"
-    ],
+  ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "parser": "@typescript-eslint/parser",
