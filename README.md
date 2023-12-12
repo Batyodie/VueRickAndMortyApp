@@ -1,18 +1,65 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# VueRickAndMortyApp
 
-## Recommended IDE Setup
+This project is a Vue 3 application built using TypeScript and Vite. It's designed to interface with the Rick and Morty API, showcasing a modern web application development setup with Vue 3's `<script setup>` SFCs.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Type Support For `.vue` Imports in TS
+- Vue 3 composition API
+- TypeScript integration
+- Vite for fast development and bundling
+- Integration with Rick and Morty API
+- End-to-end tests with Playwright
+- State management with Pinia
+- Routing with Vue Router
+- UI components with PrimeVue
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Project Setup
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+To get started, clone the repository and install dependencies:
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```bash
+git clone https://github.com/Batyodie/VueRickAndMortyApp.git
+cd VueRickAndMortyApp
+npm install
+```
+
+## Running the Application
+
+Run the development server with:
+
+```bash
+npm run dev
+```
+
+## Building for Production
+
+To build for production, use:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+To deploy the project, ensure you have Node.js version 18 or higher installed. 
+
+Install dependencies with:
+
+```bash
+npm ci
+```
+
+Then, run the build command:
+
+```bash
+npm run build
+```
+
+## Contributing
+
+Contributions to the project are welcome. Please ensure to follow the existing code style and add tests for new features.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
