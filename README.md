@@ -3,6 +3,8 @@
 
 This project is a Vue 3 application built using TypeScript and Vite. It's designed to interface with the Rick and Morty API, showcasing a modern web application development setup with Vue 3's `<script setup>` SFCs.
 
+[Preview](https://batyodie.github.io/VueRickAndMortyApp/)
+
 ## Features
 
 - Vue 3 composition API
