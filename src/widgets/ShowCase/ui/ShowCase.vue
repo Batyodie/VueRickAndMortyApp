@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { validateHandler } from '@/app/providers/router/queryValidator';
 import { CharacterList, CharacterFilter, CharacterMore } from '@/entities/Character/';
-import ScrollPanel from 'primevue/scrollpanel';
 import ScrollTop from 'primevue/scrolltop';
 
 import { useShowCase } from '../model';
@@ -50,7 +49,7 @@ onBeforeRouteUpdate((to, from, next) => validateHandler(to, from, next));
         @resetFilter="handleResetFilter"
       />
 
-      <ScrollPanel class="show-case-content">
+      <div class="show-case-content">
         <CharacterMore
           :page="character.page"
           :isLoading="character.isFetching"
@@ -65,7 +64,7 @@ onBeforeRouteUpdate((to, from, next) => validateHandler(to, from, next));
         </CharacterMore>
 
         <ScrollTop />
-      </ScrollPanel>
+      </div>
 
       <Toast />
     </div>

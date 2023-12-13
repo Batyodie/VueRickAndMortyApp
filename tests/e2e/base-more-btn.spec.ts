@@ -1,38 +1,38 @@
-import { test, expect } from '@playwright/test';
-import { API_URL } from './utils';
+import { expect } from '@playwright/test';
+import { test } from './fixtures';
 
 test.describe('Rick and Morty tests "Show more" button', () => {
-  test('Clicking "Show more" sends request to API with incremented page number', async ({ page }) => {
+  test('Clicking "Show more" sends request to API with incremented page number', async ({ page, characterPage }) => {
     await page.goto('/');
     await page.waitForLoadState('load');
 
-    const showMoreButton = page.locator('button', { hasText: 'Show more' });
+    const showMoreButton = characterPage.find('more-btn');
 
     await expect(showMoreButton).toBeVisible();
 
     await showMoreButton.click();
     expect(await showMoreButton.isDisabled()).toBe(true);
 
-    const request = await page.waitForRequest((request) => {
-      return request.url().startsWith(API_URL) && request.url().includes('page=2');
-    });
-    const response = await request.response();
+    const response = await characterPage.waitRequest('page=2');
 
     await expect(response.status()).toEqual(200);
-    expect(await showMoreButton.isDisabled()).toBe(false);
     await page.waitForURL((url) => {
       return url.search.includes('page=2');
     });
+    expect(await showMoreButton.isDisabled()).toBe(false);
 
     const characterCards = page.locator('[data-testid="character-card"]');
     await expect(characterCards).toHaveCount(40);
   });
 
-  test('Clicking "Show more" multiple times sends requests to API with incremented page numbers', async ({ page }) => {
+  test('Clicking "Show more" multiple times sends requests to API with incremented page numbers', async ({
+    page,
+    characterPage,
+  }) => {
     await page.goto('/');
     await page.waitForLoadState('load');
 
-    const showMoreButton = page.locator('button', { hasText: 'Show more' });
+    const showMoreButton = characterPage.find('more-btn');
 
     await expect(showMoreButton).toBeVisible();
 
@@ -40,16 +40,13 @@ test.describe('Rick and Morty tests "Show more" button', () => {
       await showMoreButton.click();
       expect(await showMoreButton.isDisabled()).toBe(true);
 
-      const request = await page.waitForRequest((request) => {
-        return request.url().startsWith(API_URL) && request.url().includes(`page=${pageNumber}`);
-      });
-      const response = await request.response();
+      const response = await characterPage.waitRequest(`page=${pageNumber}`);
 
-      await expect(response.status()).toEqual(200);
-      expect(await showMoreButton.isDisabled()).toBe(false);
+      expect(response.status()).toEqual(200);
       await page.waitForURL((url) => {
         return url.search.includes(`page=${pageNumber}`);
       });
+      expect(await showMoreButton.isDisabled()).toBe(false);
     }
 
     const characterCards = page.locator('[data-testid="character-card"]');
