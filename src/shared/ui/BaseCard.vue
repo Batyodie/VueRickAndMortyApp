@@ -21,7 +21,7 @@
 <style lang="scss" scoped>
 .r-base-card {
   width: 600px;
-  max-height: 400px;
+  max-height: 600px;
   display: flex;
   overflow: hidden;
   background: var(--color-black-4);

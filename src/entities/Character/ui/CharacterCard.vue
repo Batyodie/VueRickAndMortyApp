@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useEpisodeStore } from '@/entities/Episode/model';
 import { BaseCard } from '@/shared/ui/';
 import type { Character } from 'rickmortyapi';
 
@@ -8,12 +9,18 @@ export interface BaseCardProps {
 
 const props = defineProps<BaseCardProps>();
 
-const { image, name, episode, location, status, species, gender } = props.character;
+const { image, name, location, status, species, gender } = props.character;
+const { episodes, findEpisodeIdFromEpisodeUrl } = useEpisodeStore();
+
 const statusIcon = computed(() => ({
   'status-icon--dead': status === 'Dead',
   'status-icon--alive': status === 'Alive',
   'status-icon--unknown': status === 'unknown',
 }));
+const firstEpisodeId = computed(() =>
+  props.character.episode[0] ? findEpisodeIdFromEpisodeUrl(props.character.episode[0]) : null,
+);
+const episodeInfo = computed(() => episodes.get(firstEpisodeId.value ?? 0));
 </script>
 
 <template>
@@ -28,9 +35,13 @@ const statusIcon = computed(() => ({
       </a>
     </template>
 
-    <template v-if="episode" #episode>
+    <template v-if="episodeInfo" #episode>
       <span class="description">First seen in:</span>
-      <a href="https://rickandmortyapi.com/api/episode/10" rel="noopener noreferrer" class="link"> unknown </a>
+      <div class="episode-info">
+        <a :href="episodeInfo.url" rel="noopener noreferrer" class="link"> {{ episodeInfo.name }} </a>
+        <p>{{ episodeInfo.air_date }}</p>
+        <p>{{ episodeInfo.episode }}</p>
+      </div>
     </template>
 
     <template v-if="location" #location>
@@ -118,5 +129,11 @@ const statusIcon = computed(() => ({
   &--dead {
     background-color: var(--color-red);
   }
+}
+
+.episode-info {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
 }
 </style>

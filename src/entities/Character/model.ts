@@ -4,6 +4,7 @@ import { useGetMaxCharacters, useGetCharacters } from './api.ts';
 import { SaveRouteParams } from '@/app/providers/router/queryValidator';
 import { sleep } from '@/shared/lib/utils/sleep';
 import { updateRouteQuery } from '@/shared/lib/utils/updateRouteParams';
+import { useEpisodeStore } from '@/entities/Episode';
 
 export interface CharacterState {
   characters: Character[];
@@ -29,6 +30,7 @@ export const useCharacterStore = defineStore('character', () => {
   });
   const router = useRouter();
   const route = useRoute();
+  const { fetchEpisode, createEpisodeIdsFromCharacters } = useEpisodeStore();
 
   async function fetchCharacters(filters?: CharacterFilter, maxCharacters?: number) {
     character.isError = false;
@@ -39,6 +41,9 @@ export const useCharacterStore = defineStore('character', () => {
     try {
       await sleep(1000);
       const resp = maxCharacters ? await useGetMaxCharacters(filters, maxCharacters) : await useGetCharacters(filters);
+
+      const ids = createEpisodeIdsFromCharacters(resp.results ?? []);
+      await fetchEpisode(ids);
 
       return resp;
     } catch (err) {
