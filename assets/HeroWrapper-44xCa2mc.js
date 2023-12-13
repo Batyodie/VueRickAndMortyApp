@@ -1,1 +1,0 @@
-import{_ as o,o as s,c,p as t,i as a,a as r}from"./index-lRmFNDpi.js";const _={},p=e=>(t("data-v-b0d6ff79"),e=e(),a(),e),d={class:"r-hero"},n=p(()=>r("h1",{class:"title"},"The Rick and Morty Vue Test App",-1)),i=[n];function f(e,h){return s(),c("section",d,i)}const m=o(_,[["render",f],["__scopeId","data-v-b0d6ff79"]]);export{m as H};
